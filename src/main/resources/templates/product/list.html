@@ -1,0 +1,23 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+	<main>
+		<div class="row">
+			<div th:each="p: ${items}" class="col-sm-4">
+				<div class="panel panel-primary poly-item text-center">
+					<div class="panel-heading">
+						<h4 class="panel-title" th:text="${p.name}"></h4>
+					</div>
+					<div class="panel-body">
+						<a th:href="@{|/product/detail/${p.id}|}">
+							<img th:src="@{|/assets/images/${p.image}|}">
+						</a>
+					</div>
+					<div class="panel-footer text-right">
+						<p class="pull-left">$[[${p.price}]]</p>
+						<a th:href="@{|/product/detail/${p.id}|}" class="btn btn-success">Detail</a>
+						<p th:replace="~{/product/_actions::item_id(${p.id})}"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
